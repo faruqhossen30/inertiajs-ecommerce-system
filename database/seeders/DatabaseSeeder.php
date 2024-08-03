@@ -24,6 +24,11 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UserSeeder::class,
+
+            CategorySeeder::class,
+            BrandSeeder::class,
+            AttributeSeeder::class,
+
             DivisionSeeder::class,
             DistrictSeeder::class,
             UpazilaSeeder::class,

@@ -1,7 +1,8 @@
 <?php
 
+use App\Http\Controllers\Admin\Attributes\CategoryController;
+use App\Http\Controllers\Admin\Attributes\SubCategoryController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\CategoryController;
 use App\Http\Controllers\Admin\ServiceController;
 
 use App\Http\Controllers\Admin\Blog\BlogcategoryController;
@@ -24,6 +25,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
 
     Route::resource('posts', PostController::class);
     Route::resource('category', CategoryController::class);
+    Route::resource('subcategory', SubCategoryController::class);
     // Service
     Route::resource('service', ServiceController::class);
 
