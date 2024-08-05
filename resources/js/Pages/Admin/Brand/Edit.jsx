@@ -7,15 +7,15 @@ import InputLabel from '@/Components/Form/InputLabel';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
 
 
-export default function Create({ auth,category }) {
+export default function Create({ brand }) {
     const { data, setData, put, processing, errors, reset } = useForm({
-        name: category.name,
-        status: category.status,
+        name: brand.name,
+        status: brand.status,
     });
 
     function submit(e) {
         e.preventDefault()
-        put(route('category.update', category.id));
+        put(route('brands.update', category.id));
     }
 
     return (
@@ -35,6 +35,12 @@ export default function Create({ auth,category }) {
                                 <InputLabel isRequired={true} labelFor="name" />
                                 <Input id="name" type="text" name="name" value={data.name} autoComplete="name" placeholder="name" onChange={(e) => setData('name', e.target.value)} />
                                 <p className="text-sm text-red-600 mt-2">{errors.name}</p>
+                            </div>
+
+                            <div>
+                                <InputLabel isRequired={true} labelFor="thumbnail" />
+                                <input id="thumbnail" type="file" name="thumbnail"  placeholder="thumbnail" onChange={(e) => setData('thumbnail', e.target.files[0])} />
+                                <p className="text-sm text-red-600 mt-2">{errors.thumbnail}</p>
                             </div>
 
                             <div>

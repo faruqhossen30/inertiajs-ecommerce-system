@@ -7,25 +7,28 @@ import InputLabel from '@/Components/Form/InputLabel';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
 
 
-export default function Create({ auth,category }) {
+export default function Create({ color }) {
+
     const { data, setData, put, processing, errors, reset } = useForm({
-        name: category.name,
-        status: category.status,
+        name: color.name,
+        code: color.code,
+        description: color.description,
+        status: color.status,
     });
 
     function submit(e) {
         e.preventDefault()
-        put(route('category.update', category.id));
+        put(route('colors.update', color.id));
     }
 
     return (
         <AuthenticatedLayout>
-            <BreadcumComponent pageOne="Categories" pageOneRoute="category.index" />
+            <BreadcumComponent pageOne="Colors" pageOneRoute="colors.index" />
 
             <div className="flex flex-col bg-white border shadow-sm rounded-xl dark:bg-gray-800 dark:border-neutral-700 dark:shadow-neutral-700/70">
                 <div className="bg-gray-100 border-b rounded-t-xl py-3 px-4 md:py-4 md:px-5 dark:bg-gray-800 dark:border-neutral-700">
                     <p className="mt-1 text-sm text-gray-500 dark:text-neutral-500">
-                        Edit Category
+                        Edit Color
                     </p>
                 </div>
                 <div className="p-4 md:p-5">
@@ -35,6 +38,16 @@ export default function Create({ auth,category }) {
                                 <InputLabel isRequired={true} labelFor="name" />
                                 <Input id="name" type="text" name="name" value={data.name} autoComplete="name" placeholder="name" onChange={(e) => setData('name', e.target.value)} />
                                 <p className="text-sm text-red-600 mt-2">{errors.name}</p>
+                            </div>
+                            <div>
+                                <InputLabel isRequired={true} labelFor="code" />
+                                <Input id="code" type="color" name="code" value={data.code} autoComplete="code" placeholder="Color Code" onChange={(e) => setData('code', e.target.value)} />
+                                <p className="text-sm text-red-600 mt-2">{errors.code}</p>
+                            </div>
+                            <div>
+                                <InputLabel isRequired={true} labelFor="description" />
+                                <Input id="description" type="text" name="description" value={data.description} autoComplete="description" placeholder="Description" onChange={(e) => setData('description', e.target.value)} />
+                                <p className="text-sm text-red-600 mt-2">{errors.description}</p>
                             </div>
 
                             <div>

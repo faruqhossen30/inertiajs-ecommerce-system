@@ -16,7 +16,7 @@ class ColorController extends Controller
     public function index()
     {
         $colors = Color::latest()->paginate(10);
-        return Inertia::render('Admin/Product/Color/Index', ['colors' => $colors]);
+        return Inertia::render('Admin/Color/Index', ['colors' => $colors]);
     }
 
     /**
@@ -24,7 +24,7 @@ class ColorController extends Controller
      */
     public function create()
     {
-        return Inertia::render('Admin/Product/Color/Create');
+        return Inertia::render('Admin/Color/Create');
     }
 
     /**
@@ -37,7 +37,6 @@ class ColorController extends Controller
             ['name' => 'required', 'code' => 'required']
         );
 
-
         $data = [
             'name'        => $request->name,
             'description' => $request->description,
@@ -48,7 +47,7 @@ class ColorController extends Controller
 
         Color::create($data);
 
-        return to_route('color.index');
+        return to_route('colors.index');
     }
 
     /**
@@ -66,7 +65,7 @@ class ColorController extends Controller
     {
         $color = Color::where('id', $id)->first();
         // return $colors;
-        return Inertia::render('Admin/Product/Color/Edit', ['color'=>$color]);
+        return Inertia::render('Admin/Color/Edit', ['color'=>$color]);
     }
 
     /**
@@ -84,7 +83,7 @@ class ColorController extends Controller
             'code' => $request->code,
             'status' => $request->status,
         ]);
-        return to_route('color.index');
+        return to_route('colors.index');
     }
 
     /**
@@ -93,6 +92,6 @@ class ColorController extends Controller
     public function destroy(string $id)
     {
         Color::where('id', $id)->delete();
-        return redirect()->route('color.index');
+        return redirect()->route('colors.index');
     }
 }

@@ -1,9 +1,13 @@
 <?php
 
+use App\Http\Controllers\Admin\Attributes\AttributeController;
+use App\Http\Controllers\Admin\Attributes\AttributeValueController;
+use App\Http\Controllers\Admin\Attributes\BrandController;
 use App\Http\Controllers\Admin\Attributes\CategoryController;
+use App\Http\Controllers\Admin\Attributes\ColorController;
 use App\Http\Controllers\Admin\Attributes\SubCategoryController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
-use App\Http\Controllers\Admin\ServiceController;
+
 
 use App\Http\Controllers\Admin\Blog\BlogcategoryController;
 use App\Http\Controllers\Admin\PackageController;
@@ -24,10 +28,17 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     })->name('dashboard');
 
     Route::resource('posts', PostController::class);
+
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);
-    // Service
-    Route::resource('service', ServiceController::class);
+    Route::resource('colors', ColorController::class);
+    Route::resource('brands', BrandController::class);
+    // Attribute
+    Route::resource('attributes', AttributeController::class);
+    Route::get('attribute-value/{id}', [AttributeValueController::class, 'create'])->name('attributevalue.create');
+    Route::post('attribute-value/{id}', [AttributevalueController::class, 'store'])->name('attributevalue.store');
+    Route::post('attribute-value/{id}/update', [AttributevalueController::class, 'update'])->name('attributevalue.update');
+    Route::post('attribute-value/{id}/destroy', [AttributevalueController::class, 'destroy'])->name('attributevalue.destroy');
 
     Route::resource('tools', ToolController::class);
 

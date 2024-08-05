@@ -26,7 +26,7 @@ class AttributeValueController extends Controller
     {
         $attribute = Attribute::with('values')->firstWhere('id', $id);
 
-        return Inertia::render('Admin/Product/Attributevalue/Create', ['attribute' => $attribute]);
+        return Inertia::render('Admin/Attributevalue/Create', ['attribute' => $attribute]);
     }
 
     /**

@@ -91,6 +91,17 @@ export default function Sidebar() {
                         <div id="account-accordion-sub" className="hs-accordion-content w-full overflow-hidden transition-[height] duration-300 hidden">
                             <ul className="pt-2 pl-2">
                                 <li>
+                                    <Link href={route('brands.index')} className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300" >
+                                        Brands
+                                    </Link>
+                                </li>
+                                <li>
+                                    <Link href={route('colors.index')} className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300" >
+                                        Colors
+                                    </Link>
+                                </li>
+
+                                <li>
                                     <Link href={route('category.index')} className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300" >
                                         Category
                                     </Link>
@@ -101,10 +112,11 @@ export default function Sidebar() {
                                     </Link>
                                 </li>
                                 <li>
-                                    <Link href="/" className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300" >
-                                        Admins
+                                    <Link href={route('attributes.index')} className="flex items-center gap-x-3.5 py-2 px-2.5 text-sm text-slate-700 rounded-md hover:bg-gray-100 dark:bg-gray-800 dark:text-slate-400 dark:hover:text-slate-300" >
+                                        Attributes
                                     </Link>
                                 </li>
+
                             </ul>
                         </div>
                     </li>
