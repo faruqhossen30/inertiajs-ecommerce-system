@@ -2,10 +2,13 @@
 
 use App\Http\Controllers\Auth\GoogleauthController;
 use App\Http\Controllers\BlogpageController;
+use App\Http\Controllers\CategorypageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PortfolioPageController;
 use App\Http\Controllers\PostpageController;
+use App\Http\Controllers\ProductpageController;
 use App\Http\Controllers\ProfileController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
@@ -22,14 +25,10 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
-    return Inertia::render('HomePage', [
-        'canLogin' => Route::has('login'),
-        'canRegister' => Route::has('register'),
-        'laravelVersion' => Application::VERSION,
-        'phpVersion' => PHP_VERSION,
-    ]);
-})->name('homepage');
+Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
+
+Route::get('/products', [ProductpageController::class, 'productPage'])->name('productpage');
+Route::get('/categories', [CategorypageController::class, 'categoryPage'])->name('categorypage');
 
 Route::get('posts', [PostpageController::class, 'index'])->name('postpage');
 Route::get('post/{slug}', [PostpageController::class, 'singlePost'])->name('single.post');
