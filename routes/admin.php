@@ -11,8 +11,9 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 
 use App\Http\Controllers\Admin\Blog\BlogcategoryController;
 use App\Http\Controllers\Admin\PackageController;
-use App\Http\Controllers\Admin\PortfolioController;
+
 use App\Http\Controllers\Admin\Post\PostController;
+use App\Http\Controllers\Admin\Product\ProductController;
 use App\Http\Controllers\Admin\SkillController;
 use App\Http\Controllers\Admin\ToolController;
 use App\Http\Controllers\Admin\UserController;
@@ -33,6 +34,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::resource('subcategory', SubCategoryController::class);
     Route::resource('colors', ColorController::class);
     Route::resource('brands', BrandController::class);
+    Route::resource('product', ProductController::class);
     // Attribute
     Route::resource('attributes', AttributeController::class);
     Route::get('attribute-value/{id}', [AttributeValueController::class, 'create'])->name('attributevalue.create');
@@ -40,13 +42,13 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     Route::post('attribute-value/{id}/update', [AttributevalueController::class, 'update'])->name('attributevalue.update');
     Route::post('attribute-value/{id}/destroy', [AttributevalueController::class, 'destroy'])->name('attributevalue.destroy');
 
-    Route::resource('tools', ToolController::class);
+    // Route::resource('tools', ToolController::class);
 
-    Route::resource('skill', SkillController::class);
-    Route::post('skill/{id}', [SkillController::class, 'update'])->name('skillupdate');
+    // Route::resource('skill', SkillController::class);
+    // Route::post('skill/{id}', [SkillController::class, 'update'])->name('skillupdate');
 
-    Route::resource('portfolio', PortfolioController::class);
-    Route::post('portfolio/{id}', [PortfolioController::class, 'update'])->name('portfolioupdate');
+    // Route::resource('portfolio', PortfolioController::class);
+    // Route::post('portfolio/{id}', [PortfolioController::class, 'update'])->name('portfolioupdate');
 
     Route::resource('blogcategory', BlogcategoryController::class);
     Route::resource('package', PackageController::class);

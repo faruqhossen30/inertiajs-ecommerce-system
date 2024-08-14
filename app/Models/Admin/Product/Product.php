@@ -22,7 +22,6 @@ class Product extends Model
         'alert_quantity',
         'discount_type',
         'discount',
-        'quantity',
         'slider',
         'sku_code',
         'status',
@@ -35,13 +34,9 @@ class Product extends Model
 
     ];
 
-
     public function getItemAttribute($value)
     {
         return $this->value;
     }
-
-
-
 
 }

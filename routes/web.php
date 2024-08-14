@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Auth\GoogleauthController;
 use App\Http\Controllers\BlogpageController;
+use App\Http\Controllers\CartpageController;
 use App\Http\Controllers\CategorypageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataController;
@@ -53,4 +54,8 @@ Route::prefix('data')->group(function () {
     Route::get('districts', [DataController::class, 'districts'])->name('data.districts');
 });
 
+
+//cart
+
+Route::get('cart', [CartpageController::class, 'cartPage'])->name('cartpage');
 require __DIR__.'/auth.php';

@@ -3,7 +3,7 @@
 namespace App\Http\Controllers\Admin\Attributes;
 
 use App\Http\Controllers\Controller;
-use App\Models\Category;
+use App\Models\Admin\Product\Category;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;

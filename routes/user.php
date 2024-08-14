@@ -13,5 +13,6 @@ Route::group(['prefix' => 'user', 'middleware' => ['auth']], function () {
     Route::post('post/create', [PostController::class, 'store'])->name('user.post.store');
 
     Route::get('profile', [ProfileController::class, 'profile'])->name('user.profile');
-    Route::get('profile/edit', [ProfileController::class, 'edit'])->name('user.profile.edit');
+    Route::get('profile/edit', [ProfileController::class, 'profileEdit'])->name('user.profile.edit');
+    Route::post('profile/edit', [ProfileController::class, 'profileUpdate'])->name('user.profile.update');
 });
