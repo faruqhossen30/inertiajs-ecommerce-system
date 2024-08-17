@@ -32,7 +32,7 @@ function RichTextEditor({data,setData}) {
 
 
     return (
-        <ReactQuill className="h-96 min-w-full" theme="snow" value={data.description} onChange={(e)=> setData('description', e)} modules={module} />
+        <ReactQuill className="h-52 min-w-full" theme="snow" value={data.description} onChange={(e)=> setData('description', e)} modules={module} />
     )
 }
 

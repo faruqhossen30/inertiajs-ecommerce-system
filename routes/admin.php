@@ -10,6 +10,7 @@ use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 
 
 use App\Http\Controllers\Admin\Blog\BlogcategoryController;
+use App\Http\Controllers\Admin\Blog\BlogController;
 use App\Http\Controllers\Admin\PackageController;
 
 use App\Http\Controllers\Admin\Post\PostController;
@@ -29,6 +30,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
     })->name('dashboard');
 
     Route::resource('posts', PostController::class);
+    Route::resource('blog', BlogController::class);
 
     Route::resource('category', CategoryController::class);
     Route::resource('subcategory', SubCategoryController::class);

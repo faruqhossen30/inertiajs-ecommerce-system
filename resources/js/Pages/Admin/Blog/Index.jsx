@@ -1,28 +1,24 @@
 import ButtonPlus from '@/Components/Button/ButtonPlus';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
-import Pagination from '@/Components/Table/Pagination';
 import { PencilIcon, TrashIcon } from '@heroicons/react/24/outline';
 import { EyeIcon } from '@heroicons/react/24/solid';
 import { Head, Link } from '@inertiajs/react';
+import Pagination from '@/Components/Pagination';
 import AuthenticatedLayout from '@/Layouts/AuthenticatedLayout';
 import SearchFilter from '@/Components/Table/SearchFilter';
 
-export default function Index({ auth, users }) {
+export default function Index({ auth, blogs }) {
     return (
         <AuthenticatedLayout>
             <div className="flex justify-between items-center">
-                <BreadcumComponent pageOne="Users" pageOneRoute="" />
-                {/* <ButtonPlus routeName="" /> */}
+                <BreadcumComponent pageOne="Blogs" pageOneRoute="blog.index" />
+                <ButtonPlus routeName={route("blog.create")} />
             </div>
-
-
-
             <div className="flex flex-col">
                 <div className="-m-1.5 overflow-x-auto">
                     <div className="p-1.5 min-w-full inline-block align-middle">
                         <div className="bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden dark:bg-slate-900 dark:border-gray-700">
-
-                        <SearchFilter routeName={'user.index'} />
+                         <SearchFilter routeName={'blog.index'} />
                             {/* <!-- Table --> */}
                             <table className="min-w-full divide-y divide-gray-200 dark:divide-gray-700">
                                 <thead className="bg-gray-50 dark:bg-slate-800">
@@ -38,7 +34,7 @@ export default function Index({ auth, users }) {
                                         <th scope="col" className="px-6 py-3 text-left">
                                             <div className="flex items-center gap-x-2">
                                                 <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                    Name
+                                                    Title
                                                 </span>
                                             </div>
                                         </th>
@@ -46,12 +42,18 @@ export default function Index({ auth, users }) {
                                         <th scope="col" className="px-6 py-3 text-left">
                                             <div className="flex items-center gap-x-2">
                                                 <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
-                                                    Email
+                                                    Photo
                                                 </span>
                                             </div>
                                         </th>
 
-
+                                        <th scope="col" className="px-6 py-3 text-left">
+                                            <div className="flex items-center gap-x-2">
+                                                <span className="text-xs font-semibold uppercase tracking-wide text-gray-800 dark:text-gray-200">
+                                                    Status
+                                                </span>
+                                            </div>
+                                        </th>
 
 
                                         <th scope="col" className="px-6 py-3 text-left">
@@ -69,7 +71,7 @@ export default function Index({ auth, users }) {
                                 <tbody className="divide-y divide-gray-200 dark:divide-gray-700">
 
                                     {
-                                        users.data.map((item, index) => {
+                                        blogs.data.map((item, index) => {
                                             return <tr key={index}>
                                                 <td className="h-px w-px whitespace-nowrap">
                                                     <div className="px-6 py-2">
@@ -78,27 +80,35 @@ export default function Index({ auth, users }) {
                                                 </td>
                                                 <td className="h-px w-px whitespace-nowrap">
                                                     <div className="px-6 py-2">
-                                                        <span className="text-sm text-gray-600 dark:text-gray-400">{item.name}</span>
+                                                        <span className="text-sm text-gray-600 dark:text-gray-400">{item.title}</span>
                                                     </div>
                                                 </td>
                                                 <td className="h-px w-px whitespace-nowrap">
                                                     <div className="px-6 py-2">
-                                                        <span className="text-sm text-gray-600 dark:text-gray-400">{item.email}</span>
+                                                    <img src={window.location.protocol + '/storage/' + item.thumbnail} alt="photo" className="h-4" />
                                                     </div>
                                                 </td>
 
-
-
+                                                <td className="h-px w-px whitespace-nowrap">
+                                                    <div className="px-6 py-2">
+                                                        <span className="inline-flex items-center gap-1.5 py-0.5 px-2 rounded-full text-xs font-medium bg-green-100 text-green-800 dark:bg-green-900 dark:text-green-200">
+                                                            <svg className="w-2.5 h-2.5" xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" viewBox="0 0 16 16">
+                                                                <path d="M16 8A8 8 0 1 1 0 8a8 8 0 0 1 16 0zm-3.97-3.03a.75.75 0 0 0-1.08.022L7.477 9.417 5.384 7.323a.75.75 0 0 0-1.06 1.06L6.97 11.03a.75.75 0 0 0 1.079-.02l3.992-4.99a.75.75 0 0 0-.01-1.05z" />
+                                                            </svg>
+                                                            Active
+                                                        </span>
+                                                    </div>
+                                                </td>
                                                 <td className="h-px w-px whitespace-nowrap">
                                                     <div className="px-6 py-1.5 flex space-x-1">
-                                                        <Link href={route('user.show', item.id)} method="GET" as="button" className="border p-1 rounded-md dark:border-gray-700 text-gray-500">
+                                                        <Link href={route('blog.show', item.id)}  as="button" className="border p-1 rounded-md dark:border-gray-700 text-gray-500">
                                                             <EyeIcon className="w-4 h-4" />
                                                         </Link>
 
-                                                        <Link href={route('package.edit', item.id)} className="border p-1 rounded-md dark:border-gray-700 text-green-500">
+                                                        <Link href={route('blog.edit', item.id)} className="border p-1 rounded-md dark:border-gray-700 text-green-500">
                                                             <PencilIcon className="w-4 h-5" />
                                                         </Link>
-                                                        <Link href={route('user.destroy', item.id)} method="Delete" as="button" className="border p-1 rounded-md dark:border-gray-700 text-red-500">
+                                                        <Link href={route('blog.destroy', item.id)} method="Delete" as="button" className="border p-1 rounded-md dark:border-gray-700 text-red-500">
                                                             <TrashIcon className="w-4 h-4 " />
                                                         </Link>
                                                     </div>
@@ -113,7 +123,7 @@ export default function Index({ auth, users }) {
                             </table>
                             {/* <!-- End Table --> */}
 
-                            <Pagination pagination={users} links={users.links} />
+                            <Pagination pagination={blogs} links={blogs.links} />
                         </div>
                     </div>
                 </div>
