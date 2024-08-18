@@ -39,6 +39,8 @@ Route::get('blogs', [BlogpageController::class, 'index'])->name('blogpage');
 Route::get('blog/{slug}', [BlogpageController::class, 'singleBlog'])->name('single.blog');
 Route::get('portfolios', [PortfolioPageController::class, 'index'])->name('portfoliopage');
 Route::get('portfolio/{slug}', [PortfolioPageController::class, 'singlePortfolio'])->name('single.portfolio');
+// Cart
+Route::get('cart', [CartpageController::class, 'cartPage'])->name('cartpage');
 
 
 Route::get('auth/google', [GoogleauthController::class, 'redirect'])->name('google-auth');
@@ -50,12 +52,12 @@ Route::middleware('auth')->group(function () {
 
 Route::prefix('data')->group(function () {
     Route::get('categories', [DataController::class, 'categories'])->name('data.categories');
+    Route::get('subcategories', [DataController::class, 'subcategories'])->name('data.subcategories');
     Route::get('divisions', [DataController::class, 'divisions'])->name('data.divisions');
     Route::get('districts', [DataController::class, 'districts'])->name('data.districts');
 });
 
 
-//cart
 
-Route::get('cart', [CartpageController::class, 'cartPage'])->name('cartpage');
-require __DIR__.'/auth.php';
+
+require __DIR__ . '/auth.php';

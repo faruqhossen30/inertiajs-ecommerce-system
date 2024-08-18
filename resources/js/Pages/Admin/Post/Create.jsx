@@ -26,7 +26,7 @@ export default function Create({ auth, categories }) {
 
     return (
         <AuthenticatedLayout>
-            <BreadcumComponent pageOne="Portfolios" pageOneRoute="portfolio.index" />
+            <BreadcumComponent pageOne="Posts" pageOneRoute="posts.index" />
             <form onSubmit={submit}>
                 <div className="grid grid-cols-12 gap-5">
                     <div className="col-span-8">

@@ -13,7 +13,7 @@ export default function Index({ auth, posts }) {
     return (
         <AuthenticatedLayout>
             <div className="flex justify-between items-center">
-                <BreadcumComponent pageOne="Posts" pageOneRoute="portfolio.index" />
+                <BreadcumComponent pageOne="Posts" pageOneRoute="posts.index" />
                 <ButtonPlus routeName={route("posts.create")} />
             </div>
 

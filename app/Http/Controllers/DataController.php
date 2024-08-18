@@ -2,7 +2,8 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
+use App\Models\Admin\Product\Category;
+use App\Models\Admin\Product\SubCategory;
 use App\Models\Location\District;
 use App\Models\Location\Division;
 use Illuminate\Http\Request;
@@ -11,9 +12,47 @@ class DataController extends Controller
 {
     public function categories()
     {
-        $categories = Category::orderBy('name', 'asc')->get();
-        return response()->json($categories);
+        try {
+            $categories = Category::query();
+
+            if (isset($_GET['keyword']) && $_GET['keyword']) {
+                $keyword = trim($_GET['keyword']);
+                $categories = $categories->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            $categories = $categories->orderBy('name', 'asc')
+                ->take(10)->get();
+
+            return response()->json($categories);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
     }
+
+    public function subCategories(Request $request)
+    {
+        try {
+            $subcategories = SubCategory::query();
+
+            if ($request->category_id) {
+                $category_id = $request->category_id;
+                $subcategories = $subcategories->where('category_id', $category_id);
+            }
+
+            if (isset($_GET['keyword']) && $_GET['keyword']) {
+                $keyword = trim($_GET['keyword']);
+                $subcategories = $subcategories->where('name', 'like', '%' . $keyword . '%');
+            }
+
+            $subcategories = $subcategories->orderBy('name', 'asc')
+                ->take(10)->get();
+
+            return response()->json($subcategories);
+        } catch (\Throwable $th) {
+            dd($th);
+        }
+    }
+
     public function districts(Request $request)
     {
         try {

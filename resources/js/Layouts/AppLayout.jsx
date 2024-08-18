@@ -2,13 +2,14 @@ import Header from './Header';
 import Footer from './Footer';
 import { Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react'
-import { Link, router } from '@inertiajs/react';
+import { Link, router, usePage } from '@inertiajs/react';
 import Switcher from '@/Components/Common/Switcher';
 import { Bars3CenterLeftIcon, HeartIcon, MagnifyingGlassIcon, MicrophoneIcon, ShoppingBagIcon, UserIcon } from '@heroicons/react/24/outline';
 import MenuLayout from './MenuLayout';
 import { FooterLayout } from './FooterLayout';
 
 export default function AppLayout({ children }) {
+    const { auth } = usePage().props;
     const people = [
         { id: 1, name: 'All Category', unavailable: false },
         { id: 1, name: 'Durward Reynolds', unavailable: false },
@@ -113,21 +114,29 @@ export default function AppLayout({ children }) {
                             <span><ShoppingBagIcon className="w-6 h-6 text-gray-600" /></span>
                             <span className="text-sm font-semibold text-gray-600">Cart</span>
                         </button> */}
-                        <button type="button" className="relative inline-flex justify-center items-center text-sm font-semibold rounded-lg   text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
+                        <Link href={route('cartpage')} className="relative inline-flex justify-center items-center text-sm font-semibold rounded-lg   text-gray-800 shadow-sm hover:bg-gray-50 disabled:opacity-50 disabled:pointer-events-none dark:bg-neutral-900 dark:border-neutral-700 dark:text-white dark:hover:bg-neutral-800">
                             <div className="flex flex-col items-center">
                                 <ShoppingBagIcon className="w-8 h-6 text-gray-600" />
                                 <span className="text-sm font-semibold text-gray-600">Cart</span>
                             </div>
                             <span className="absolute top-0 end-0 inline-flex items-center py-0.5 px-1.5 rounded-full text-xs font-medium transform -translate-y-1/2 translate-x-1/2 bg-emerald-500 text-white">9</span>
-                        </button>
+                        </Link>
                         <button className="flex flex-col items-center">
                             <span><HeartIcon className="w-6 h-6 text-gray-600" /></span>
                             <span className="text-sm font-semibold text-gray-600">Wishlist</span>
                         </button>
-                        <button className="flex flex-col items-center">
-                            <span><UserIcon className="w-6 h-6 text-gray-600" /></span>
-                            <span className="text-sm font-semibold text-gray-600">Account</span>
-                        </button>
+                        {
+                            auth ?
+                                <Link href={route('user.dashboard')} className="flex flex-col items-center">
+                                    <span><UserIcon className="w-6 h-6 text-gray-600" /></span>
+                                    <span className="text-sm font-semibold text-gray-600">Account</span>
+                                </Link> :
+                                <button className="flex flex-col items-center">
+                                    <span><UserIcon className="w-6 h-6 text-gray-600" /></span>
+                                    <span className="text-sm font-semibold text-gray-600">Login</span>
+                                </button>
+                        }
+
                     </div>
                 </div>
             </section>
@@ -145,7 +154,7 @@ export default function AppLayout({ children }) {
                 </div>
             </section>
             <MenuLayout />
-                {children}
+            {children}
             <FooterLayout />
         </>
     );

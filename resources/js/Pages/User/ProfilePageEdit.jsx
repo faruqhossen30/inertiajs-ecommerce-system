@@ -35,7 +35,7 @@ export default function ProfilePageEdit({ user }) {
         <AppLayout>
             <Head title="Dashboard" />
 
-            <div className="grid grid-cols-12 gap-5">
+            <div className="container grid grid-cols-12 gap-5">
                 <div className="col-span-3 py-3 hidden md:block">
                     <UserSidebarComponent />
                 </div>

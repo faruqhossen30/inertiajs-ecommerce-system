@@ -10,11 +10,11 @@ class Product extends Model
     use HasFactory;
 
     protected $fillable = [
-
-        'category_id',
-        'subcategory_id',
+        'id',
         'title',
         'slug',
+        'category_id',
+        'subcategory_id',
         'description',
         'short_description',
         'price',
@@ -22,21 +22,23 @@ class Product extends Model
         'alert_quantity',
         'discount_type',
         'discount',
-        'slider',
         'sku_code',
         'status',
-        'thumbnail',
         'brand_id',
+        'slider',
         'author_id',
+        'thumbnail',
+        'img_1',
+        'img_2',
+        'img_3',
+        'img_4',
         'meta_title',
         'meta_description',
-        'meta_keyword',
-
+        'meta_keyword'
     ];
 
     public function getItemAttribute($value)
     {
         return $this->value;
     }
-
 }

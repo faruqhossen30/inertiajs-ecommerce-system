@@ -26,10 +26,14 @@ return new class extends Migration
             $table->float('discount')->nullable();
             $table->string('sku_code')->nullable();
             $table->enum('status',['active','deactive','draft'])->default('draft');
-            $table->string('thumbnail')->nullable();
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->json('slider')->nullable();
             $table->unsignedBigInteger('author_id');
+            $table->string('thumbnail')->nullable();
+            $table->string('img_1')->nullable();
+            $table->string('img_2')->nullable();
+            $table->string('img_3')->nullable();
+            $table->string('img_4')->nullable();
             //seo section
             $table->string('meta_title')->nullable();
             $table->string('meta_description')->nullable();
