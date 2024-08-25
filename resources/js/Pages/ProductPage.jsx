@@ -1,12 +1,13 @@
 import BreadcumComponent from "@/Components/Dashboard/BreadcumComponent";
+import Pagination from "@/Components/Frontend/Pagination";
+import FilterCategory from "@/Components/Frontend/Products/FilterCategory";
 import ProductItem from "@/Components/Product/ProductItem";
 import AppLayout from "@/Layouts/AppLayout";
 import { ListBulletIcon } from "@heroicons/react/24/outline";
 import { router } from "@inertiajs/react";
 
-export default function ProductPage({ auth, laravelVersion, phpVersion }) {
+export default function ProductPage({ products }) {
     const params = route().params;
-    let products = [2, 5, 4, 5, 6, 6, 3, 4, 6, 5, 6, 9, 7, 9, 7, 8, 2];
     return (
         <AppLayout >
             <section className="container mx-auto px-3 lg:px-0">
@@ -14,58 +15,7 @@ export default function ProductPage({ auth, laravelVersion, phpVersion }) {
             </section>
             <div className="container mx-auto grid grid-cols-12 gap-5 px-3 lg:px-0">
                 <div className="col-span-3 hidden md:block py-1">
-
-
-
-                    <div className="dark:bg-gray-800 mb-4 rounded-md px-4 py-2 space-y-2 border">
-                        <div className="inline-flex items-center gap-x-2 py-1 text-sm font-medium text-gray-800 dark:text-gray-400 border-b w-full">
-                            <span className="text-lg font-bold">Colors</span>
-                        </div>
-
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="colorcheckbox1" />
-                            <label htmlFor="colorcheckbox1" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Red</label>
-                        </div>
-
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="colorcheckbox2" />
-                            <label htmlFor="colorcheckbox2" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Green</label>
-                        </div>
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="colorcheckbox3" />
-                            <label htmlFor="colorcheckbox3" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Blue</label>
-                        </div>
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="colorcheckbox4" />
-                            <label htmlFor="colorcheckbox4" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Yellow</label>
-                        </div>
-                    </div>
-
-
-                    <div className="dark:bg-gray-800 mb-4 rounded-md px-4 py-2 space-y-2 border">
-                        <div className="inline-flex items-center gap-x-2 py-1 text-sm font-medium text-gray-800 dark:text-gray-400 border-b w-full">
-                            <span className="text-lg font-bold">Delivery Days</span>
-                        </div>
-
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-default-checkbox" />
-                            <label htmlFor="hs-default-checkbox" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Up to 10 days</label>
-                        </div>
-
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-checked-checkbox" />
-                            <label htmlFor="hs-checked-checkbox" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Up to 20 days</label>
-                        </div>
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-checked-checkbox" />
-                            <label htmlFor="hs-checked-checkbox" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Up to 20 days</label>
-                        </div>
-                        <div className="flex">
-                            <input type="checkbox" className="shrink-0 mt-0.5 border-gray-200 rounded text-blue-600 pointer-events-none focus:ring-blue-500 dark:bg-gray-800 dark:border-gray-700 dark:checked:bg-blue-500 dark:checked:border-blue-500 dark:focus:ring-offset-gray-800" id="hs-checked-checkbox" />
-                            <label htmlFor="hs-checked-checkbox" className="text-sm text-gray-500 ml-3 dark:text-gray-400">Up to 20 days</label>
-                        </div>
-                    </div>
-
+                    <FilterCategory />
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
@@ -87,7 +37,7 @@ export default function ProductPage({ auth, laravelVersion, phpVersion }) {
 
                         <div className="flex space-x-2">
                             <div className="flex items-center space-x-1">
-                                <label htmlFor="" className="text-gray-800 dark:text-gray-400">Order:</label>
+                                <label htmlFor="" className="text-gray-800 dark:text-gray-400">Show:</label>
                                 <select name="show"
                                     onChange={(e) => {
                                         return router.get(route(route().current(), params),
@@ -112,7 +62,7 @@ export default function ProductPage({ auth, laravelVersion, phpVersion }) {
                                     onChange={(e) => {
                                         return router.get(route(route().current(), params),
                                             {
-                                                orderby: e.target.value
+                                                sort: e.target.value
                                             },
                                             {
                                                 preserveState: true,
@@ -122,19 +72,22 @@ export default function ProductPage({ auth, laravelVersion, phpVersion }) {
                                     }}
                                     className="py-1 px-4 pe-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                                     <option value="">Default</option>
-                                    <option value="asc">Latest</option>
-                                    <option value="desc">Older</option>
+                                    <option value="asc">Low to High</option>
+                                    <option value="desc">High to Low</option>
                                 </select>
                             </div>
                         </div>
                     </div>
-                    <div className="grid grid-cols-12 gap-3">
+                    <div className="grid grid-cols-12 lg:grid-cols-10 gap-3">
                         {
-                            products.map((item, index) => {
+                            products.data.map((item, index) => {
                                 return <ProductItem key={index} product={item} />
                             })
                         }
 
+                    </div>
+                    <div className="py-5">
+                        <Pagination pagination={products} links={products.links} />
                     </div>
                 </div>
             </div>

@@ -1,76 +1,71 @@
-import { Link, usePage } from '@inertiajs/react'
+import React from 'react';
+import { Link } from '@inertiajs/react';
+import classNames from 'classnames';
 
-const Pagination = ({ pagination, links = [], meta = null }) => {
-    const { props } = usePage();
-    const cat = props.request.category ?? null;
+const PageLink = ({ active, label, url }) => {
+    const className = classNames(
+        [
+            'px-4 py-2',
+            'border border-solid border-gray-300 dark:border-gray-700 rounded',
+            'text-sm',
+            'text-gray-800 dark:text-gray-400',
+            'hover:bg-gray-300 dark:hover:bg-gray-700',
+            'focus:outline-none focus:border-indigo-700 focus:text-indigo-700'
+        ],
+        {
+            'bg-gray-300 dark:bg-gray-700': active
+        }
+    );
     return (
-        <div className="px-2">
-            <div className="my-2 sm:flex sm:flex-1 sm:items-center lg:justify-between">
-                <p className="text-sm leading-5 text-gray-700 py-2">
-                    Showing{' '}
-                    <span className="font-medium">
-                        {meta ? meta.from : pagination.from}
-                    </span>
-                    /
-                    <span className="font-medium">
-                        {meta ? meta.to : pagination.to}{' '}
-                    </span>
-                    (
-                    <span className="font-medium">
-                        {meta ? meta.total : pagination.total}
-                    </span>{' '}
-                    total)
-                </p>
-                <div>
-                    <span className="relative z-0 inline-flex shadow-sm">
-                        <span>
-                            {links.map((link, index) => {
-                                const key = link.label + index
-                                if (link.active) {
-                                    return (
-                                        <span key={key}>
-                                            <span
-                                                className="relative -ml-px inline-flex cursor-default items-center border border-gray-300 dark:border-gray-700 bg-gray-500 px-4 py-1 text-sm font-medium leading-5 text-gray-100"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: link.label,
-                                                }}
-                                            ></span>
-                                        </span>
-                                    )
-                                }
+        <Link className={className} href={url}>
+            <span dangerouslySetInnerHTML={{ __html: label }}></span>
+        </Link>
+    );
+};
 
-                                if (link.url === null) {
-                                    return (
-                                        <span key={key}>
-                                            <span
-                                                className="relative -ml-px inline-flex items-center border border-gray-300 dark:border-gray-700 px-4 py-1 text-sm font-medium leading-5 text-gray-300"
-                                                dangerouslySetInnerHTML={{
-                                                    __html: link.label,
-                                                }}
-                                            ></span>
-                                        </span>
-                                    )
-                                }
+// Previous, if on first page
+// Next, if on last page
+// and dots, if exists (...)
+const PageInactive = ({ label }) => {
+    const className = classNames(
+        'px-4 py-2 text-sm border rounded border-solid border-gray-300 text-gray'
+    );
+    return (
+        <div className={className} dangerouslySetInnerHTML={{ __html: label }} />
+    );
+};
 
-                                return (
-                                    <span key={key}>
-                                        <Link
-                                            href={cat ? link.url + ('&category='+cat) : link.url}
-                                            preserveState={true}
-                                            className="relative -ml-px inline-flex items-center border border-gray-200 dark:border-gray-700  px-4 py-1 text-sm font-medium leading-5 text-gray-700 hover:bg-gray-300"
-                                            dangerouslySetInnerHTML={{
-                                                __html: link.label,
-                                            }}
-                                        ></Link>
-                                    </span>
-                                )
-                            })}
-                        </span>
-                    </span>
-                </div>
+export default ({ pagination,links = [],meta = null }) => {
+    // dont render, if there's only 1 page (previous, 1, next)
+    if (links.length === 3) return null;
+    return (
+        <div className="md:flex md:flex-1 md:items-center lg:justify-between">
+            <p className="text-sm leading-5 text-gray-700 py-2">
+                Showing{' '}
+                <span className="font-medium">
+                    {meta ? meta.from : pagination.from}
+                </span>
+                /
+                <span className="font-medium">
+                    {meta ? meta.to : pagination.to}{' '}
+                </span>
+                (
+                <span className="font-medium">
+                    {meta ? meta.total : pagination.total}
+                </span>{' '}
+                total)
+            </p>
+
+            <div className="flex flex-wrap space-x-2">
+                {links.map(({ active, label, url }) => {
+                    return url === null ? (
+                        <PageInactive key={label} label={label} />
+                    ) : (
+                        <PageLink key={label} label={label} active={active} url={url} />
+                    );
+                })}
             </div>
         </div>
-    )
-}
 
-export default Pagination
+    );
+};

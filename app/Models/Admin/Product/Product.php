@@ -13,7 +13,7 @@ class Product extends Model
         'id',
         'title',
         'slug',
-        'bn_name',
+        'bn_title',
         'category_id',
         'subcategory_id',
         'description',
@@ -42,4 +42,11 @@ class Product extends Model
     {
         return $this->value;
     }
+
+    public function subcategory()
+    {
+        return $this->belongsTo(subcategory::class, 'categories');
+    }
+
+
 }

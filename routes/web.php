@@ -6,6 +6,7 @@ use App\Http\Controllers\CartpageController;
 use App\Http\Controllers\CategorypageController;
 use App\Http\Controllers\ContactController;
 use App\Http\Controllers\DataController;
+use App\Http\Controllers\DistrictDataController;
 use App\Http\Controllers\HomepageController;
 use App\Http\Controllers\PortfolioPageController;
 use App\Http\Controllers\PostpageController;
@@ -53,8 +54,13 @@ Route::middleware('auth')->group(function () {
 Route::prefix('data')->group(function () {
     Route::get('categories', [DataController::class, 'categories'])->name('data.categories');
     Route::get('subcategories', [DataController::class, 'subcategories'])->name('data.subcategories');
+    Route::get('features', [DataController::class, 'features'])->name('data.features');
     Route::get('divisions', [DataController::class, 'divisions'])->name('data.divisions');
     Route::get('districts', [DataController::class, 'districts'])->name('data.districts');
+    Route::get('upazilas', [DataController::class, 'upazilas'])->name('data.upazilas');
+    Route::get('unions', [DataController::class, 'unions'])->name('data.unions');
+
+    Route::get('district-all', [DistrictDataController::class, 'allDistrict'])->name('all.district');
 });
 
 

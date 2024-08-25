@@ -7,7 +7,7 @@ export default function MenuLayout() {
     return (
         <section className="bg-[#EEF6FF]">
             <div className="container mx-auto ">
-                <nav className="flex items-center space-x-6 px-4 py-2">
+                <nav className="flex items-center space-x-6 py-2">
                     <Link href={route('homepage')} className="font-normal text-emerald-500">
                         Home
                     </Link>

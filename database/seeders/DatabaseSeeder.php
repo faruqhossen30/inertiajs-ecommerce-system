@@ -2,6 +2,9 @@
 
 namespace Database\Seeders;
 
+use App\Models\Admin\Product\Category;
+use App\Models\Admin\Product\Product;
+use App\Models\Admin\Product\SubCategory;
 use Illuminate\Database\Seeder;
 
 
@@ -24,15 +27,20 @@ class DatabaseSeeder extends Seeder
         $this->call([
             AdminSeeder::class,
             UserSeeder::class,
+            // CategorySeeder::class,
+            // BrandSeeder::class,
+            // AttributeSeeder::class,
 
-            CategorySeeder::class,
-            BrandSeeder::class,
-            AttributeSeeder::class,
-
-            DivisionSeeder::class,
-            DistrictSeeder::class,
-            UpazilaSeeder::class,
-            UnionSeeder::class,
+            // DivisionSeeder::class,
+            // DistrictSeeder::class,
+            // UpazilaSeeder::class,
+            // UnionSeeder::class,
         ]);
+        Category::factory(5)->has(Product::factory(50))
+        ->create();
+
+        // SubCategory::factory(5)->has(Category::factory(3))->create();
+
+        // Product::factory(5)->has(SubCategory::factory(3))->create();
     }
 }
