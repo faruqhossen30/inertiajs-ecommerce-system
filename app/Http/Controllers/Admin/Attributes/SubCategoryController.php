@@ -41,7 +41,7 @@ class SubCategoryController extends Controller
             'name'        => $request->name,
             'slug'        => Str::slug($request->name),
             'category_id' => $request->category_id,
-            'author_id'   => 1,
+            'user_id'   => 1,
         ];
 
         if ($request->file('thumbnail')) {

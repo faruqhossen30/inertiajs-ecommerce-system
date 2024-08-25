@@ -15,7 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name');
             $table->string('slug');
-            $table->unsignedBigInteger('author_id');
+            $table->string('bn_name')->nullable();
+            $table->unsignedBigInteger('user_id');
             $table->string('thumbnail')->nullable();
             $table->boolean('status')->default(false);
             $table->timestamps();

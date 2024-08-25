@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('code');
             $table->string('description')->nullable();
-            $table->bigInteger('author_id')->nullable();
+            $table->bigInteger('user_id')->nullable();
             $table->boolean('status')->default(true);
             $table->timestamps();
         });

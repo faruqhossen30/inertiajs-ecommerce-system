@@ -11,8 +11,9 @@ class Brand extends Model
     protected $fillable = [
         'name',
         'slug',
+        'bn_name',
         'thumbnail',
-        'author_id',
+        'user_id',
         'status'
     ];
 }

@@ -5,6 +5,7 @@ import Input from '@/Components/Form/Input';
 import SubmitButton from '@/Components/Form/SubmitButton';
 import InputLabel from '@/Components/Form/InputLabel';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
+import ThumbnailInput from '@/Components/Form/ThumbnailInput';
 
 
 export default function Create({ auth,category }) {
@@ -35,6 +36,11 @@ export default function Create({ auth,category }) {
                                 <InputLabel isRequired={true} labelFor="name" />
                                 <Input id="name" type="text" name="name" value={data.name} autoComplete="name" placeholder="name" onChange={(e) => setData('name', e.target.value)} />
                                 <p className="text-sm text-red-600 mt-2">{errors.name}</p>
+                            </div>
+
+                            <div className="max-w-52">
+                                <InputLabel isRequired={true} labelFor="thumbnail" />
+                                <ThumbnailInput name="thumbnail" thumbnail={data.thumbnail} setData={setData} errors={errors} placeholder="Thumbnail" />
                             </div>
 
                             <div>

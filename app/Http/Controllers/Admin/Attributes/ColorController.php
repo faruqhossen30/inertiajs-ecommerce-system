@@ -41,7 +41,7 @@ class ColorController extends Controller
             'name'        => $request->name,
             'description' => $request->description,
             'code'        => $request->code,
-            'author_id'   => Auth::user()->id,
+            'user_id'   => Auth::user()->id,
             'status'      => $request->status,
         ];
 

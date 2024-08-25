@@ -41,7 +41,7 @@ class AttributeController extends Controller
         Attribute::create([
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'author_id' => Auth::user()->id,
+            'user_id' => Auth::user()->id,
         ]);
         return redirect()->route('attributes.index');
     }

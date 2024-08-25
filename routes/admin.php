@@ -24,19 +24,24 @@ use Inertia\Inertia;
 Route::get('admin/login', [AuthenticatedSessionController::class, 'create'])->name('adminlogin');
 Route::post('admin/login', [AuthenticatedSessionController::class, 'store']);
 
-Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function () {
+Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function () {
     Route::get('/dashboard', function () {
         return Inertia::render('Admin/Dashboard');
     })->name('dashboard');
+    Route::resource('product', ProductController::class);
 
     Route::resource('posts', PostController::class);
     Route::resource('blog', BlogController::class);
-
-    Route::resource('category', CategoryController::class);
-    Route::resource('subcategory', SubCategoryController::class);
     Route::resource('colors', ColorController::class);
+    // Category
+    Route::resource('category', CategoryController::class);
+    Route::post('category/{id}', [CategoryController::class, 'update'])->name('categoryupdate');
+    // Subcategory
+    Route::resource('subcategory', SubCategoryController::class);
+    Route::post('subcategory', [SubCategoryController::class, 'update'])->name('subcategoryupdate');
+    // Brand
     Route::resource('brands', BrandController::class);
-    Route::resource('product', ProductController::class);
+    Route::post('brands/{id}', [BrandController::class, 'update'])->name('brandsupdate');
     // Attribute
     Route::resource('attributes', AttributeController::class);
     Route::get('attribute-value/{id}', [AttributeValueController::class, 'create'])->name('attributevalue.create');
@@ -54,7 +59,7 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth','admin']], function (
 
     Route::resource('blogcategory', BlogcategoryController::class);
     Route::resource('package', PackageController::class);
-    Route::get('user/list', [UserController::class,'index'])->name('users');
-    Route::get('user/show/{id}', [UserController::class,'show'])->name('user.show');
-    Route::delete('user/delete/{id}', [UserController::class,'destroy'])->name('user.destroy');
+    Route::get('user/list', [UserController::class, 'index'])->name('users');
+    Route::get('user/show/{id}', [UserController::class, 'show'])->name('user.show');
+    Route::delete('user/delete/{id}', [UserController::class, 'destroy'])->name('user.destroy');
 });

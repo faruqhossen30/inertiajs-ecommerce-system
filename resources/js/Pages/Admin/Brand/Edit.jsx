@@ -5,17 +5,20 @@ import Input from '@/Components/Form/Input';
 import SubmitButton from '@/Components/Form/SubmitButton';
 import InputLabel from '@/Components/Form/InputLabel';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
+import ThumbnailInput from '@/Components/Form/ThumbnailInput';
 
 
 export default function Create({ brand }) {
-    const { data, setData, put, processing, errors, reset } = useForm({
+    const { data, setData, post, processing, errors, reset } = useForm({
         name: brand.name,
+        bn_name: brand.bn_name ?? '',
+        thumbnail: brand.thumbnail,
         status: brand.status,
     });
 
     function submit(e) {
         e.preventDefault()
-        put(route('brands.update', category.id));
+        post(route('brandsupdate', brand.id));
     }
 
     return (
@@ -38,10 +41,16 @@ export default function Create({ brand }) {
                             </div>
 
                             <div>
-                                <InputLabel isRequired={true} labelFor="thumbnail" />
-                                <input id="thumbnail" type="file" name="thumbnail"  placeholder="thumbnail" onChange={(e) => setData('thumbnail', e.target.files[0])} />
-                                <p className="text-sm text-red-600 mt-2">{errors.thumbnail}</p>
+                                <InputLabel isRequired={true} labelFor="Bangla Name" />
+                                <Input id="bn_name" type="text" name="bn_name" value={data.bn_name} autoComplete="bn_name" placeholder="বাংলা নাম" onChange={(e) => setData('bn_name', e.target.value)} />
+                                <p className="text-sm text-red-600 mt-2">{errors.bn_name}</p>
                             </div>
+
+                            <div className="max-w-xs">
+                                <InputLabel isRequired={true} labelFor="thumbnail" />
+                                <ThumbnailInput name="thumbnail" thumbnail={data.thumbnail} setData={setData} errors={errors} placeholder="Thumbnail" />
+                            </div>
+
 
                             <div>
                                 <InputLabel isRequired={true} labelFor="status" />

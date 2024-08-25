@@ -8,6 +8,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Storage;
 
 class BrandController extends Controller
 {
@@ -41,7 +42,8 @@ class BrandController extends Controller
         $data = [
             'name' => $request->name,
             'slug' => Str::slug($request->name),
-            'author_id' => Auth::user()->id,
+            'bn_name' => $request->bn_name,
+            'user_id' => Auth::user()->id,
         ];
         if ($request->file('thumbnail')) {
             $file_name = $request->file('thumbnail')->store('brands');
@@ -67,7 +69,7 @@ class BrandController extends Controller
     public function edit(string $id)
     {
         $brand = Brand::where('id', $id)->first();
-        return Inertia::render('Admin/Brand/Edit', ['brand'=>$brand]);
+        return Inertia::render('Admin/Brand/Edit', ['brand' => $brand]);
     }
 
     /**
@@ -75,7 +77,29 @@ class BrandController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        //
+        $request->validate([
+            'name' => 'required'
+        ]);
+
+        $data = [
+            'name' => $request->name,
+            'slug' => Str::slug($request->name),
+            'bn_name' => $request->bn_name,
+        ];
+
+        $brand = Brand::firstwhere('id', $id);
+        if ($request->file('thumbnail')) {
+            if ($brand->thumbnail != null && Storage::exists($brand->thumbnail)) {
+                Storage::delete($brand->thumbnail);
+            }
+
+            $file_name = $request->file('thumbnail')->store('brand');
+            $data['thumbnail'] = $file_name;
+        }
+
+        Brand::firstwhere('id', $id)->update($data);
+
+        return to_route('brands.index');
     }
 
     /**

@@ -41,7 +41,7 @@ class ProductController extends Controller
 
         $data = [
             'title'             => $request->title,
-            'slug'              => Str::slug($request->title),
+            'slug'              => Str ::slug($request->title),
             'category_id'       => $request->category_id,
             'subcategory_id'    => $request->subcategory_id,
             'description'       => $request->description,
@@ -55,11 +55,12 @@ class ProductController extends Controller
             'sku_code'          => $request->sku_code,
             'status'            => $request->status,
             'brand_id'          => $request->brand_id,
-            'meta_title'      => $request->meta_title,
+            'meta_title'        => $request->meta_title,
             'meta_keyword'      => $request->meta_keyword,
             'meta_description'  => $request->meta_description,
-            'author_id'         => Auth::user()->id,
+            'user_id'           => Auth::user()->id,
         ];
+
         Product::create($data);
 
         return to_route('product.index');

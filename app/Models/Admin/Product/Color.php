@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Color extends Model
 {
     use HasFactory;
-    protected $fillable =['name','code', 'description', 'author_id','stauts'];
+    protected $fillable =['name','bn_name','code', 'description', 'user_id','stauts'];
 
 }

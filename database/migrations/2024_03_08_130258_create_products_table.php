@@ -15,6 +15,7 @@ return new class extends Migration
             $table->id();
             $table->string('title');
             $table->string('slug')->unique();
+            $table->string('bn_name')->nullable();
             $table->unsignedBigInteger('category_id')->nullable();
             $table->unsignedBigInteger('subcategory_id')->nullable();
             $table->longText('description');
@@ -28,7 +29,7 @@ return new class extends Migration
             $table->enum('status',['active','deactive','draft'])->default('draft');
             $table->unsignedBigInteger('brand_id')->nullable();
             $table->json('slider')->nullable();
-            $table->unsignedBigInteger('author_id');
+            $table->unsignedBigInteger('user_id');
             $table->string('thumbnail')->nullable();
             $table->string('img_1')->nullable();
             $table->string('img_2')->nullable();

@@ -43,7 +43,7 @@ class CategoryController extends Controller
         $data=[
             'name'=> $request->name,
             'slug'=> Str::slug($request->name),
-            'author_id'=> Auth::user()->id,
+            'user_id'=> Auth::user()->id,
         ];
         if ($request->file('thumbnail')) {
             $file_name = $request->file('thumbnail')->store('category');
@@ -84,7 +84,7 @@ class CategoryController extends Controller
         $data = [
             'name'=> $request->name,
             'slug'=> Str::slug($request->name),
-            'author_id'=> Auth::user()->id,
+            'user_id'=> Auth::user()->id,
         ];
 
         Category::firstwhere('id', $id)->update($data);

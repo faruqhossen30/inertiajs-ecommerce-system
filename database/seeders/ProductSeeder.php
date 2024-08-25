@@ -4028,7 +4028,7 @@ class ProductSeeder extends Seeder
                     'price'             => fake()->randomDigitNot(2),
                     'quantity'          => fake()->randomDigitNot(2),
                     'thumbnail'          => "https://picsum.photos/id/".$key."/200/300",
-                    'author_id'          => 1,
+                    'user_id'          => 1,
                 ]
             );
         }
