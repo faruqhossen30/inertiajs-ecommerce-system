@@ -5,6 +5,7 @@ use App\Http\Controllers\Admin\Attributes\AttributeValueController;
 use App\Http\Controllers\Admin\Attributes\BrandController;
 use App\Http\Controllers\Admin\Attributes\CategoryController;
 use App\Http\Controllers\Admin\Attributes\ColorController;
+use App\Http\Controllers\Admin\Attributes\SliderController;
 use App\Http\Controllers\Admin\Attributes\SubCategoryController;
 use App\Http\Controllers\Admin\Auth\AuthenticatedSessionController;
 
@@ -33,12 +34,14 @@ Route::group(['prefix' => 'admin', 'middleware' => ['auth', 'admin']], function 
     Route::resource('posts', PostController::class);
     Route::resource('blog', BlogController::class);
     Route::resource('colors', ColorController::class);
+    Route::resource('sliders', SliderController::class);
+    Route::post('slider/{id}', [SliderController::class, 'update'])->name('sliderupdate');
     // Category
     Route::resource('category', CategoryController::class);
     Route::post('category/{id}', [CategoryController::class, 'update'])->name('categoryupdate');
     // Subcategory
     Route::resource('subcategory', SubCategoryController::class);
-    Route::post('subcategory', [SubCategoryController::class, 'update'])->name('subcategoryupdate');
+    Route::post('subcategory/{id}', [SubCategoryController::class, 'update'])->name('subcategoryupdate');
     // Brand
     Route::resource('brands', BrandController::class);
     Route::post('brands/{id}', [BrandController::class, 'update'])->name('brandsupdate');

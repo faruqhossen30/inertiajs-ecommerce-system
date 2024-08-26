@@ -6,11 +6,13 @@ import SubmitButton from '@/Components/Form/SubmitButton';
 import InputLabel from '@/Components/Form/InputLabel';
 import BreadcumComponent from '@/Components/Dashboard/BreadcumComponent';
 import ThumbnailInput from '@/Components/Form/ThumbnailInput';
+// import ThumbnailInput from '@/Components/Form/ThumbnailInput';
 
 
 export default function Create({ auth,category }) {
     const { data, setData, put, processing, errors, reset } = useForm({
         name: category.name,
+        bn_name: category.bn_name,
         status: category.status,
     });
 
@@ -35,6 +37,11 @@ export default function Create({ auth,category }) {
                             <div>
                                 <InputLabel isRequired={true} labelFor="name" />
                                 <Input id="name" type="text" name="name" value={data.name} autoComplete="name" placeholder="name" onChange={(e) => setData('name', e.target.value)} />
+                                <p className="text-sm text-red-600 mt-2">{errors.name}</p>
+                            </div>
+                            <div>
+                                <InputLabel isRequired={true} labelFor="Bangla Name" />
+                                <Input id="bn_name" type="text" name="bn_name" value={data.bn_name} autoComplete="bn_name" placeholder="বাংলা নাম" onChange={(e) => setData('bn_name', e.target.value)} />
                                 <p className="text-sm text-red-600 mt-2">{errors.name}</p>
                             </div>
 

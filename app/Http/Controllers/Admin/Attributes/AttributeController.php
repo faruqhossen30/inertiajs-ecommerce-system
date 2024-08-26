@@ -40,6 +40,7 @@ class AttributeController extends Controller
 
         Attribute::create([
             'name' => $request->name,
+            'bn_name' => $request->bn_name,
             'slug' => Str::slug($request->name),
             'user_id' => Auth::user()->id,
         ]);
@@ -60,7 +61,7 @@ class AttributeController extends Controller
     public function edit(string $id)
     {
         $attribute = Attribute::firstWhere('id', $id);
-        return Inertia::render('Admin/Product/Attribute/Edit', ['attribute' => $attribute]);
+        return Inertia::render('Admin/Attribute/Edit', ['attribute' => $attribute]);
     }
 
     /**
@@ -73,10 +74,12 @@ class AttributeController extends Controller
         ]);
 
         Attribute::firstWhere('id', $id)->update([
-            'name' => $request->name,
-            'slug' => Str::slug($request->name),
+            'name'    => $request->name,
+            'bn_name' => $request->bn_name,
+            'slug'    => Str::slug($request->name),
+            'user_id' => Auth::user()->id,
         ]);
-        return to_route('attribute.index');
+        return to_route('attributes.index');
     }
 
     /**
@@ -85,6 +88,6 @@ class AttributeController extends Controller
     public function destroy(string $id)
     {
         Attribute::where('id', $id)->delete();
-        return to_route('attribute.index');
+        return to_route('attributes.index');
     }
 }

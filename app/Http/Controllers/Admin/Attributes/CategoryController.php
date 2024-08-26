@@ -42,6 +42,7 @@ class CategoryController extends Controller
 
         $data=[
             'name'=> $request->name,
+            'bn_name'=> $request->bn_name,
             'slug'=> Str::slug($request->name),
             'user_id'=> Auth::user()->id,
         ];
@@ -83,6 +84,7 @@ class CategoryController extends Controller
 
         $data = [
             'name'=> $request->name,
+            'bn_name'=> $request->bn_name,
             'slug'=> Str::slug($request->name),
             'user_id'=> Auth::user()->id,
         ];

@@ -4,24 +4,24 @@ namespace App\Http\Controllers\Admin\Attributes;
 
 use App\Http\Controllers\Controller;
 use App\Models\Admin\Product\Category;
-use App\Models\Admin\Product\SubCategory;
+use App\Models\Admin\Product\Slider;
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Session;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Str;
 use Inertia\Inertia;
 
-class SubCategoryController extends Controller
+
+class SliderController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $subcategories = SubCategory::paginate(10);
+        $sliders = Slider::paginate(10);
         // return $categories;
-        return Inertia::render('Admin/Subcategory/Index', ['subcategories' => $subcategories]);
+        return Inertia::render('Admin/Slider/Index', ['sliders' => $sliders]);
     }
 
     /**
@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
     public function create()
     {
         $categories = Category::get();
-        return Inertia::render('Admin/Subcategory/Create', ['categories' => $categories]);
+        return Inertia::render('Admin/Slider/Create', ['categories' => $categories]);
     }
 
     /**
@@ -39,21 +39,17 @@ class SubCategoryController extends Controller
     public function store(Request $request)
     {
         $data = [
-            'name'        => $request->name,
-            'bn_name'        => $request->bn_name,
-            'slug'        => Str::slug($request->name),
+            'title'       => $request->title,
             'category_id' => $request->category_id,
-            'user_id'   => 1,
+            'description' => $request->description,
         ];
-
         if ($request->file('thumbnail')) {
-            $file_name = $request->file('thumbnail')->store('subcategory');
+            $file_name = $request->file('thumbnail')->store('slider');
             $data['thumbnail'] = $file_name;
         }
+        Slider::create($data);
 
-        SubCategory::create($data);
-
-        return to_route('subcategory.index');
+        return to_route('sliders.index');
     }
 
     /**
@@ -69,9 +65,9 @@ class SubCategoryController extends Controller
      */
     public function edit(string $id)
     {
-        $subcategory = SubCategory::where('id', $id)->first();
+        $slider     = Slider::where('id', $id)->first();
         $categories = Category::get();
-        return Inertia::render('Admin/Subcategory/Edit', ['categories' => $categories, 'subcategory' => $subcategory]);
+        return Inertia::render('Admin/Slider/Edit', ['categories' => $categories, 'slider' => $slider]);
     }
 
     /**
@@ -79,27 +75,24 @@ class SubCategoryController extends Controller
      */
     public function update(Request $request, string $id)
     {
-
-        // return $request->all();
         $data = [
-            'name'        => $request->name,
-            'bn_name'        => $request->bn_name,
-            'slug'        => Str::slug($request->name),
+            'title'       => $request->title,
             'category_id' => $request->category_id,
+            'description' => $request->description,
         ];
 
-        $subcategory = SubCategory::firstwhere('id', $id);
+        $slider = Slider::firstwhere('id', $id);
         if ($request->file('thumbnail')) {
-            if ($subcategory->thumbnail != null && Storage::exists($subcategory->thumbnail)) {
-                Storage::delete($subcategory->thumbnail);
+            if ($slider->thumbnail != null && Storage::exists($slider->thumbnail)) {
+                Storage::delete($slider->thumbnail);
             }
 
-            $file_name = $request->file('thumbnail')->store('subcategory');
+            $file_name = $request->file('thumbnail')->store('slider');
             $data['thumbnail'] = $file_name;
         }
 
-        SubCategory::firstwhere('id', $id)->update($data);
-        return to_route('subcategory.index');
+        Slider::firstwhere('id', $id)->update($data);
+        return to_route('sliders.index');
     }
 
     /**
@@ -107,7 +100,7 @@ class SubCategoryController extends Controller
      */
     public function destroy(string $id)
     {
-        Subcategory::where('id', $id)->delete();
-        return to_route('subcategory.index');
+        Slider::where('id', $id)->delete();
+        return to_route('sliders.index');
     }
 }

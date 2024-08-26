@@ -14,6 +14,7 @@ return new class extends Migration
         Schema::create('colors', function (Blueprint $table) {
             $table->id();
             $table->string('name');
+            $table->string('bn_name')->nullable();
             $table->string('code');
             $table->string('description')->nullable();
             $table->bigInteger('user_id')->nullable();

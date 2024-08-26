@@ -39,9 +39,10 @@ class ColorController extends Controller
 
         $data = [
             'name'        => $request->name,
+            'bn_name'     => $request->bn_name,
             'description' => $request->description,
             'code'        => $request->code,
-            'user_id'   => Auth::user()->id,
+            'user_id'     => Auth::user()->id,
             'status'      => $request->status,
         ];
 
@@ -78,10 +79,11 @@ class ColorController extends Controller
         );
 
         Color::where('id', $id)->update([
-            'name' => $request->name,
+            'name'        => $request->name,
+            'bn_name'     => $request->bn_name,
             'description' => $request->description,
-            'code' => $request->code,
-            'status' => $request->status,
+            'code'        => $request->code,
+            'status'      => $request->status,
         ]);
         return to_route('colors.index');
     }

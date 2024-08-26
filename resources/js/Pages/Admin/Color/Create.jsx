@@ -10,6 +10,7 @@ import SubmitButton from '@/Components/Form/SubmitButton';
 export default function Create({ auth }) {
     const { data, setData, post, processing, errors, reset } = useForm({
         name: '',
+        bn_name: '',
         code: '',
         description: '',
         status: 1,
@@ -36,6 +37,11 @@ export default function Create({ auth }) {
                             <div>
                                 <InputLabel isRequired={true} labelFor="name" />
                                 <Input id="name" type="text" name="name" value={data.name} autoComplete="name" placeholder="name" onChange={(e) => setData('name', e.target.value)} />
+                                <p className="text-sm text-red-600 mt-2">{errors.name}</p>
+                            </div>
+                            <div>
+                                <InputLabel isRequired={true} labelFor="Bangla Name" />
+                                <Input id="bn_name" type="text" name="bn_name" value={data.bn_name} autoComplete="bn_name" placeholder="বাংলা নাম" onChange={(e) => setData('bn_name', e.target.value)} />
                                 <p className="text-sm text-red-600 mt-2">{errors.name}</p>
                             </div>
                             <div>
