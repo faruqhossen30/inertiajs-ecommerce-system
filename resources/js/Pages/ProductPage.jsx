@@ -1,6 +1,7 @@
 import BreadcumComponent from "@/Components/Dashboard/BreadcumComponent";
 import Pagination from "@/Components/Frontend/Pagination";
 import FilterCategory from "@/Components/Frontend/Products/FilterCategory";
+import ViewModal from "@/Components/Frontend/ViewModal";
 import ProductItem from "@/Components/Product/ProductItem";
 import AppLayout from "@/Layouts/AppLayout";
 import { ListBulletIcon } from "@heroicons/react/24/outline";
@@ -10,6 +11,7 @@ export default function ProductPage({ products }) {
     const params = route().params;
     return (
         <AppLayout >
+
             <section className="container mx-auto px-3 lg:px-0">
                 <BreadcumComponent pageOne="Products" pageOneRoute="productpage" />
             </section>

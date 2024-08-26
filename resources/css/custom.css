@@ -1,0 +1,10 @@
+.navlist{
+    display: flex !important;
+}
+.navlist li{
+    width: 100px !important;
+}
+
+.slick-active img{
+    opacity: 100 !important;
+}

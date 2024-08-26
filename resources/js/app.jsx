@@ -1,5 +1,6 @@
 import './bootstrap';
 import '../css/app.css';
+import '../css/custom.css';
 import('preline');
 
 import { createRoot } from 'react-dom/client';
