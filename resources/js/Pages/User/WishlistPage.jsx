@@ -4,7 +4,7 @@ import { HomeIcon, ListBulletIcon, MapPinIcon, PlusIcon, UserIcon } from '@heroi
 import { InformationCircleIcon, UsersIcon } from '@heroicons/react/24/solid';
 import { Head, Link, usePage } from '@inertiajs/react';
 
-export default function ProfilePage() {
+export default function WishlistPage() {
 
     const { auth } = usePage().props;
     return (

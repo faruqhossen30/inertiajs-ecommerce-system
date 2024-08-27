@@ -31,6 +31,7 @@ class ProductFactory extends Factory
             'price'             => rand(500,1000),
             'quantity'          => rand(500,1000),
             'alert_quantity'    => rand(500,1000),
+            'brand_id'          => rand(1,7),
             'user_id'           => 1,
             'status'            => true
         ];

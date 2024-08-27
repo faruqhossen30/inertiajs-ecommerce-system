@@ -28,7 +28,7 @@ class DatabaseSeeder extends Seeder
             AdminSeeder::class,
             UserSeeder::class,
             // CategorySeeder::class,
-            // BrandSeeder::class,
+            BrandSeeder::class,
             // AttributeSeeder::class,
 
             // DivisionSeeder::class,
@@ -36,7 +36,7 @@ class DatabaseSeeder extends Seeder
             // UpazilaSeeder::class,
             // UnionSeeder::class,
         ]);
-        Category::factory(5)->has(Product::factory(50))
+        Category::factory(5)->has(Product::factory(10))
         ->create();
 
         // SubCategory::factory(5)->has(Category::factory(3))->create();

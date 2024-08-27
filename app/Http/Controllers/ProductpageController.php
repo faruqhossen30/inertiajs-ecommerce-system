@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Admin\Product\Brand;
 use App\Models\Admin\Product\Product;
 use Illuminate\Http\Request;
 use Inertia\Inertia;
@@ -26,6 +27,10 @@ class ProductpageController extends Controller
         if (isset($_GET['cat']) && $_GET['cat']) {
             $cat = $_GET['cat'];
             $products = $products->whereIn('category_id', $cat);
+        }
+        if (isset($_GET['brand']) && $_GET['brand']) {
+            $brands = $_GET['brand'];
+            $products = $products->whereIn('brand_id', $brands);
         }
 
         if (isset($_GET['feature']) && $_GET['feature']) {
@@ -52,9 +57,16 @@ class ProductpageController extends Controller
         }
 
         $products = $products->latest()->paginate($show ?? 10)->appends($_GET);
+        $brands = Brand::get();
 
-        return Inertia::render('ProductPage', ['products' => $products, 'request' => $_GET]);
+        // return $brands;
+
+        return Inertia::render('ProductPage', ['products' => $products, 'brands'=>$brands, 'request' => $_GET]);
 
         // return Inertia::render('ProductPage');
+    }
+
+    public function singleProduct(){
+        return Inertia::render('SingleProduct');
     }
 }

@@ -96,16 +96,16 @@ export default function ViewModal() {
 
                                                 <hr />
                                                 <div className="">
-                                                    <div class=" space-x-2 py-3">
+                                                    <div className=" space-x-2 py-3">
                                                         <button type="button" className=" px-4 py-2 border rounded-lg border-gray-400 hover:bg-gray-500">250g</button>
                                                         <button type="button" className=" px-4 py-2 border rounded-lg border-gray-400 hover:bg-gray-500">500g</button>
                                                         <button type="button" className=" px-4 py-2 border rounded-lg border-gray-400 hover:bg-gray-500">1kg</button>
                                                     </div>
 
                                                     <div className="flex items-center py-1">
-                                                        <button className=" border hover:bg-gray-300 text-gray-600  px-2 py-1 rounded-l" onclick="decrement()">-</button>
+                                                        <button className=" border hover:bg-gray-300 text-gray-600  px-2 py-1 rounded-l" onClick="decrement()">-</button>
                                                         <input type="text" value="0" className="w-9 h-8 text-center border-t border-b border-gray-300" id="quantity-input" />
-                                                        <button className=" border hover:bg-gray-300 text-gray-600  px-2 py-1 rounded-r" onclick="increment()">+</button>
+                                                        <button className=" border hover:bg-gray-300 text-gray-600  px-2 py-1 rounded-r" onClick="increment()">+</button>
                                                     </div>
 
                                                     <div className="mt-3 flex flex-wrap justify-start gap-2 items-center pb-2">

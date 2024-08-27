@@ -14,7 +14,7 @@ function ProductItem({ product }) {
                 </div>
             </div>
             <div className="px-2">
-                <Link href="#" className="text-lg font-semibold text-gray-500">
+                <Link href={route('single.product', product.slug ?? 'abc')} className="text-lg font-semibold text-gray-500">
                     <h3>{product.title}</h3>
                 </Link>
                 <div className="space-x-3">

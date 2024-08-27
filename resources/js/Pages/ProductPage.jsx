@@ -1,5 +1,6 @@
 import BreadcumComponent from "@/Components/Dashboard/BreadcumComponent";
 import Pagination from "@/Components/Frontend/Pagination";
+import FilterBrand from "@/Components/Frontend/Products/FilterBrand";
 import FilterCategory from "@/Components/Frontend/Products/FilterCategory";
 import ViewModal from "@/Components/Frontend/ViewModal";
 import ProductItem from "@/Components/Product/ProductItem";
@@ -18,6 +19,7 @@ export default function ProductPage({ products }) {
             <div className="container mx-auto grid grid-cols-12 gap-5 px-3 lg:px-0">
                 <div className="col-span-3 hidden md:block py-1">
                     <FilterCategory />
+                    <FilterBrand />
                 </div>
 
                 <div className="col-span-12 md:col-span-9">
@@ -74,8 +76,8 @@ export default function ProductPage({ products }) {
                                     }}
                                     className="py-1 px-4 pe-9 block w-full border-gray-200 rounded-md text-sm focus:border-blue-500 focus:ring-blue-500 disabled:opacity-50 disabled:pointer-events-none dark:bg-slate-900 dark:border-gray-700 dark:text-gray-400 dark:focus:ring-gray-600">
                                     <option value="">Default</option>
-                                    <option value="asc">Low to High</option>
-                                    <option value="desc">High to Low</option>
+                                    <option value="asc">Price - Low to High</option>
+                                    <option value="desc">Price - High to Low</option>
                                 </select>
                             </div>
                         </div>

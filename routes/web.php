@@ -30,6 +30,7 @@ use Inertia\Inertia;
 Route::get('/', [HomepageController::class, 'homePage'])->name('homepage');
 
 Route::get('/products', [ProductpageController::class, 'productPage'])->name('productpage');
+Route::get('/products/{slug}', [ProductpageController::class, 'singleProduct'])->name('single.product');
 Route::get('/categories', [CategorypageController::class, 'categoryPage'])->name('categorypage');
 
 Route::get('posts', [PostpageController::class, 'index'])->name('postpage');

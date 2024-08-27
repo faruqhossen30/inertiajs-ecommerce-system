@@ -17,7 +17,7 @@ export default function Homepage({ categories ,sliders}) {
     return (
         <AppLayout>
             <Head title="Home" />
-            <ViewModal />
+            {/* <ViewModal /> */}
             <SliderComponent  sliders={sliders}/>
             <CategoryComponent categories={categories} />
             <section className="px-3 lg:px-0">
