@@ -19,6 +19,7 @@ class HomepageController extends Controller
 
         $categories = Category::get();
         $sliders = Slider::get();
-        return Inertia::render('HomePage', ['categories' => $categories,'sliders' => $sliders]);
+        $products = Product::take(12)->get();
+        return Inertia::render('HomePage', ['categories' => $categories,'sliders' => $sliders,'products'=>$products]);
     }
 }

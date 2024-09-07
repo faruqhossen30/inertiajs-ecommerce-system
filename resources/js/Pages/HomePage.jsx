@@ -12,8 +12,8 @@ import ProductTab from '@/Components/Product/ProductTab';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
 import ViewModal from '@/Components/Frontend/ViewModal';
 
-export default function Homepage({ categories ,sliders}) {
-    let products = [2, 5, 4, 5, 6, 6, 3, 4, 6, 5, 6, 9, 7, 9, 7, 8, 2];
+export default function Homepage({ categories ,sliders,products}) {
+
     return (
         <AppLayout>
             <Head title="Home" />
