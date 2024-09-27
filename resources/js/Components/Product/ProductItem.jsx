@@ -1,10 +1,12 @@
+import AppContext from '@/Context/AppContext';
 import { EyeIcon, HeartIcon, HomeIcon, ShoppingBagIcon } from '@heroicons/react/24/outline'
 import { Link } from '@inertiajs/react'
 import React from 'react'
+import { useContext } from 'react';
 import { useState } from 'react'
 
 function ProductItem({ product }) {
-    let [modalview, setModalView] = useState(false)
+    const {quickView,setQuickView} = useContext(AppContext);
     return (
         <div className="group col-span-6 md:col-span-4 lg:col-span-2 rounded-lg relative  border-gray-300 hover:border-emerald-500">
             <span className=" bg-emerald-500 text-white px-1 rounded-sm text-xs absolute left-0 top-0 m-2">10% Off</span>
@@ -16,7 +18,7 @@ function ProductItem({ product }) {
                         <button className="border hover:bg-emerald-500 border-gray-400 p-1 rounded-full bg-white">
                             <HeartIcon className="w-5 h-5 text-gray-400 hover:text-white" />
                         </button>
-                        <button className="border hover:bg-emerald-500 border-gray-400 p-1 rounded-full bg-white">
+                        <button onClick={()=> setQuickView(true)} className="border hover:bg-emerald-500 border-gray-400 p-1 rounded-full bg-white">
                             <EyeIcon className="w-5 h-5 text-gray-400 hover:text-white" />
                         </button>
                         <button className="border hover:bg-emerald-500 border-gray-400 p-1 rounded-full bg-white">

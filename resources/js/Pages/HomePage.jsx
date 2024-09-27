@@ -10,14 +10,13 @@ import CategoryComponent from '@/Components/Homepage/CategoryComponent';
 import ProductItem from '@/Components/Product/ProductItem';
 import ProductTab from '@/Components/Product/ProductTab';
 import { UserCircleIcon } from '@heroicons/react/24/outline';
-import ViewModal from '@/Components/Frontend/ViewModal';
 
 export default function Homepage({ categories ,sliders,products}) {
 
     return (
         <AppLayout>
             <Head title="Home" />
-            {/* <ViewModal /> */}
+
             <SliderComponent  sliders={sliders}/>
             <CategoryComponent categories={categories} />
             <section className="px-3 lg:px-0">

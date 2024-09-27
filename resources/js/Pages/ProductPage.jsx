@@ -13,16 +13,16 @@ export default function ProductPage({ products }) {
     return (
         <AppLayout >
 
-            <section className="container mx-auto px-3 lg:px-0">
+            <section className="container mx-auto px-3">
                 <BreadcumComponent pageOne="Products" pageOneRoute="productpage" />
             </section>
-            <div className="container mx-auto grid grid-cols-12 gap-5 px-3 lg:px-0">
-                <div className="col-span-3 hidden md:block py-1">
+            <div className="container mx-auto grid grid-cols-12 gap-5 px-3">
+                <div className="col-span-2 hidden md:block py-1">
                     <FilterCategory />
                     <FilterBrand />
                 </div>
 
-                <div className="col-span-12 md:col-span-9">
+                <div className="col-span-12 md:col-span-10">
                     <div className=" bg-white dark:bg-slate-800 flex justify-between mb-5">
                         <div className="flex items-center  space-x-2">
                             <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" strokeWidth="1.5" stroke="currentColor"

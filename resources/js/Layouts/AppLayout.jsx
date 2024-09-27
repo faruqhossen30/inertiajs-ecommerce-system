@@ -1,6 +1,6 @@
 import Header from './Header';
 import Footer from './Footer';
-import { Fragment, useState } from 'react';
+import { createContext, Fragment, useState } from 'react';
 import { Listbox, Transition } from '@headlessui/react'
 import { Link, router, usePage } from '@inertiajs/react';
 import Switcher from '@/Components/Common/Switcher';
@@ -8,10 +8,18 @@ import { Bars3CenterLeftIcon, CheckIcon, HeartIcon, MagnifyingGlassIcon, Microph
 import MenuLayout from './MenuLayout';
 import { FooterLayout } from './FooterLayout';
 import { useEffect } from 'react';
+import AppContext from '@/Context/AppContext';
+import QuickViewModal from '@/Components/Frontend/QuickViewModal';
 
 export default function AppLayout({ children }) {
+
     const { auth, categories } = usePage().props;
     const params = route().params;
+    const [appData, setAppData] = useState({
+        productId:0,
+        quickView:false
+    });
+    const[quickView, setQuickView] = useState(false);
 
 
 
@@ -45,7 +53,8 @@ export default function AppLayout({ children }) {
     const [selected, setSelected] = useState(categories[0])
 
     return (
-        <>
+        <AppContext.Provider value={{appData,setAppData, quickView,setQuickView}}>
+            <QuickViewModal />
             <section className="bg-emerald-500 dark:bg-slate-900 px-3 lg:px-0">
                 <div className="container mx-auto flex justify-between">
                     <div className="hidden lg:flex items-center space-x-5">
@@ -193,6 +202,6 @@ export default function AppLayout({ children }) {
             <MenuLayout />
             {children}
             <FooterLayout />
-        </>
+        </AppContext.Provider>
     );
 }

@@ -1,12 +1,17 @@
 import { Dialog, Transition } from '@headlessui/react'
 import { Fragment, useState } from 'react'
 import PostSlider from './Products/PostSlider'
+import { useContext } from 'react';
+import AppContext from '@/Context/AppContext';
 
-export default function ViewModal() {
-    let [isOpen, setIsOpen] = useState(true)
+export default function QuickViewModal() {
+    let [isOpen, setIsOpen] = useState(true);
+    const {quickView,setQuickView} = useContext(AppContext);
+    console.log('appdata', quickView);
+
 
     function closeModal() {
-        setIsOpen(false)
+        setQuickView(false)
     }
 
     function openModal() {
@@ -15,17 +20,17 @@ export default function ViewModal() {
 
     return (
         <>
-            <div className="fixed inset-0 flex items-center justify-center">
+            {/* <div className="fixed inset-0 flex items-center justify-center">
                 <button
                     type="button"
-                    onClick={openModal}
+                    onClick={(e)=> setQuickView(true) }
                     className="rounded-md bg-black/20 px-4 py-2 text-sm font-medium text-white hover:bg-black/30 focus:outline-none focus-visible:ring-2 focus-visible:ring-white/75"
                 >
                     Open dialog
                 </button>
-            </div>
+            </div> */}
 
-            <Transition appear show={isOpen} as={Fragment}>
+            <Transition appear show={quickView} as={Fragment}>
                 <Dialog as="div" className="relative z-50" onClose={closeModal}>
                     <Transition.Child
                         as={Fragment}
